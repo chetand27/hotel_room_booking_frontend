@@ -27,3 +27,7 @@ h4 small {
   font-size: 12px;
   font-weight: 300;
 }
+
+.cancel_booking_btn {
+  margin-right: 15px;
+}

@@ -78,7 +78,7 @@ const RoomBookingForm = () => {
 
   return (
     <div className="container">
-      <h3>Create Rooms Booking</h3>
+      <h3 className="align_center">Create Rooms Booking</h3>
 
       {error.message && <span className="error">{`Errors: ${error.message}`}</span>}
 
@@ -95,11 +95,11 @@ const RoomBookingForm = () => {
             onChange={(value) => updateFormDetails('room_ids', value)}
           />
         </div>
-        <div className="form_group mr-30">
+        <div className="form_group">
           <label>
             Check In:
           </label>
-          <div className="rooms_datepicker1">
+          <div className="rooms_datepicker">
             <DatePicker
               selected={booked_from}
               onChange={(value) => updateFormDetails('booked_from', value)}
@@ -110,7 +110,7 @@ const RoomBookingForm = () => {
           <label>
             Check Out:
           </label>
-          <div className="rooms_datepicker2">
+          <div className="rooms_datepicker">
             <DatePicker
               selected={booked_upto}
               onChange={(value) => updateFormDetails('booked_upto', value)}

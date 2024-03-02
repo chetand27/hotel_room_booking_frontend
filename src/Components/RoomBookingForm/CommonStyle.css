@@ -1,5 +1,11 @@
 .create_booking_form {
   padding: 0 0 20px;
+  width: 50%;
+  margin: auto;
+}
+
+.align_center {
+  text-align: center;
 }
 
 .create_booking_form label {
@@ -9,21 +15,19 @@
   margin: 10px 0;
 }
 
-.rooms_dropdown {
-  width: 40%;
-}
-
 .submit_bookings {
   margin: 10px 0;
-  width: 40%;
   cursor: pointer;
   display: block;
+  width: 100%;
 }
 
 .form_group {
   display: inline-block;
+  width: 50%;
 }
 
-.mr-30 {
-  margin-right: 30px;
+.rooms_datepicker input[type="text"] {
+  padding: 10px !important;
+  width: 100%;
 }

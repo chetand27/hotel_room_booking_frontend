@@ -58,7 +58,7 @@ const Bookings = () => {
             </a>
 
             <a
-              className="btn btn-primary"
+              className="btn btn-primary cancel_booking_btn"
               href="#"
               onClick={() => cancelBooking(booking.id)}>
                 Cancel Booking
