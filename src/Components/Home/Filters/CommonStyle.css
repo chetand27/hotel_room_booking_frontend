@@ -1,0 +1,15 @@
+.filter {
+  margin: 10px;
+  padding: 5px 15px;
+  border: 1px solid gray;
+}
+
+.filter h3 {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.select_location {
+  width: 30%;
+  display: inline-block;  
+}

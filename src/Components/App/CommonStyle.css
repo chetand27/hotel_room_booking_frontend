@@ -1,0 +1,46 @@
+html, body {
+  margin: 0;
+  overflow: hidden;
+}
+
+.full_width_container {
+  width: 100%;
+}
+
+.container {
+  width: 1170px;
+  margin: 75px auto 0;
+  height: 100vh;
+}
+
+.no_data {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 10px;
+  height: 250px;
+}
+
+.btn {
+  padding: 10px 15px;
+  border-radius: 3px;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 16px;
+}
+
+.btn-white {
+  color: inherit;
+}
+
+.btn-primary {
+  background-color: #1ab394;
+  border-color: #1ab394;
+  color: #FFFFFF;
+}
+
+.error {
+  color: red;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 16px;
+  display: block;
+}

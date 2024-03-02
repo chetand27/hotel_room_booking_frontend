@@ -1,0 +1,36 @@
+.sticky_header {
+  background: #000000;
+  color: #ffffff;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 16px;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  height: 60px;
+}
+
+.sticky_header a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.navbar_brand {
+  position: relative;
+  top: 15px;
+  margin-left: 25px;
+}
+
+ul {
+  list-style-type: none;
+  display: inline;
+  float: right;
+}
+
+ul li {
+  display: inline;
+  margin-left: 10px;
+}
+
+ul li:last-child {
+  margin-right: 25px;
+}

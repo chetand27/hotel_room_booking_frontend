@@ -1,0 +1,29 @@
+.create_booking_form {
+  padding: 0 0 20px;
+}
+
+.create_booking_form label {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 16px;
+  display: block;
+  margin: 10px 0;
+}
+
+.rooms_dropdown {
+  width: 40%;
+}
+
+.submit_bookings {
+  margin: 10px 0;
+  width: 40%;
+  cursor: pointer;
+  display: block;
+}
+
+.form_group {
+  display: inline-block;
+}
+
+.mr-30 {
+  margin-right: 30px;
+}
