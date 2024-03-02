@@ -44,6 +44,8 @@ const Bookings = () => {
 
   return (
     <div className="container">
+      <h2>User Bookings List</h2>
+
       {bookings.length === 0 && (
         <div className="no_data">
           Currently, there are no bookings for this user.

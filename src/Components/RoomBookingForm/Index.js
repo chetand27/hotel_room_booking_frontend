@@ -124,7 +124,7 @@ const RoomBookingForm = () => {
 
   return (
     <div className="container">
-      <h3 className="align_center">{`${isAddMode ? 'Create' : 'Edit'} Rooms Booking`}</h3>
+      <h2 className="align_center">{`${isAddMode ? 'Create' : 'Edit'} Rooms Booking`}</h2>
 
       {error.message && <span className="error">{`Errors: ${error.message}`}</span>}
 

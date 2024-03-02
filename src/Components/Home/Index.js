@@ -42,6 +42,8 @@ const Home = () => {
 
   return (
     <div className="container">
+      <h2>Hotel List</h2>
+
       <Filters
         currentValue={currentValue}
         onLocationChange={onLocationChange}
