@@ -1,8 +1,10 @@
 import './CommonStyle.css';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Bookings = () => {
   const [bookings, setBookings] = useState([])
+  const navigate = useNavigate();
 
   const fetchBookings = () => {
     fetch('http://localhost:3001/api/v1/bookings')
@@ -36,6 +38,10 @@ const Bookings = () => {
     });
   }
 
+  const updateBookingForm = (id) => {
+    navigate(`/bookings/${id}/edit`)
+  }
+
   return (
     <div className="container">
       {bookings.length === 0 && (
@@ -63,7 +69,9 @@ const Bookings = () => {
               onClick={() => cancelBooking(booking.id)}>
                 Cancel Booking
             </a>
-            <a className="btn btn-primary" href="#">Update Booking</a>
+            <a className="btn btn-primary"
+               href="#"
+               onClick={() => updateBookingForm(booking.id)}>Update Booking</a>
           </div>
         );
       })}

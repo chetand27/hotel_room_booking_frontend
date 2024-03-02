@@ -18,6 +18,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="bookings" element={<Bookings />} />
           <Route path="hotels/:hotel_id/bookings/new" element={<RoomBookingForm />} />
+          <Route path="bookings/:id/edit" element={<RoomBookingForm />} />
         </Routes>
       </BrowserRouter>
 

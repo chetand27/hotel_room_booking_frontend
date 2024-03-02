@@ -8,8 +8,10 @@ import "react-datepicker/dist/react-datepicker.css";
 
 
 const RoomBookingForm = () => {
-  const { hotel_id } = useParams();
+  const { hotel_id, id } = useParams();
+  const isAddMode = !id
   const [roomOptions, setRoomOptions] = useState([]);
+  const [booking, setBooking] = useState({});
   const [formDetails, setFormDetails] = useState({
     room_ids: [],
     booked_from: moment().format('YYYY-MM-DD'),
@@ -28,7 +30,6 @@ const RoomBookingForm = () => {
     fetch(`http://localhost:3001/api/v1/hotels/${hotel_id}/rooms`)
       .then(response => response.json())
       .then((data) => {
-        console.log(data);
         setRoomOptions(data);
       })
       .catch((err) => {
@@ -36,16 +37,41 @@ const RoomBookingForm = () => {
       });
   }
 
+  const fetchBooking = () => {
+    fetch(`http://localhost:3001/api/v1/bookings/${id}`)
+      .then(response => response.json())
+      .then((data) => {
+        console.log(data)
+        const fields = ['booked_from', 'booked_upto'];
+        fields.forEach(field => updateFormDetails(field, data[field]));
+        setBooking(data);
+      })
+      .catch((err) => {
+          console.log(err.message);
+      });
+  }
+
   useEffect(() => {
-    fetchRoomOptions();
+    if (!isAddMode) {
+      fetchBooking();
+    } else {
+      fetchRoomOptions();
+    }
   }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const newFormDetails = { ...formDetails }
-    newFormDetails['room_ids'] = formDetails['room_ids'].map((obj) => obj.value);
-    addBookings(newFormDetails);
+    delete newFormDetails.error
+    
+    if (isAddMode) {
+      newFormDetails['room_ids'] = formDetails['room_ids'].map((obj) => obj.value);
+      addBookings(newFormDetails);
+    } else {
+      delete newFormDetails.room_ids;
+      updateBooking(id, newFormDetails);
+    }
   }
 
   const addBookings = async (params) => {
@@ -58,8 +84,28 @@ const RoomBookingForm = () => {
     })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data)
       if (data.length > 0) {
+        navigate('/bookings')
+      } else {
+        updateFormDetails('error', data)
+      }
+    })
+    .catch((err) => {
+      updateFormDetails('error', err)
+    });
+  };
+
+  const updateBooking = async (id, params) => {
+    await fetch(`http://localhost:3001/api/v1/bookings/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(params),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.id) {
         navigate('/bookings')
       } else {
         updateFormDetails('error', data)
@@ -78,23 +124,27 @@ const RoomBookingForm = () => {
 
   return (
     <div className="container">
-      <h3 className="align_center">Create Rooms Booking</h3>
+      <h3 className="align_center">{`${isAddMode ? 'Create' : 'Edit'} Rooms Booking`}</h3>
 
       {error.message && <span className="error">{`Errors: ${error.message}`}</span>}
 
       <form className="create_booking_form"
             onSubmit={(e) => handleSubmit(e)}>
-        <label>
-          Select Rooms:
-        </label>
-        <div className="rooms_dropdown">
-          <Select
-            value={room_ids}
-            options={roomOptions}
-            isMulti
-            onChange={(value) => updateFormDetails('room_ids', value)}
-          />
-        </div>
+        {isAddMode &&
+          <>
+            <label>
+              Select Rooms:
+            </label>
+            <div className="rooms_dropdown">
+              <Select
+                value={room_ids}
+                options={roomOptions}
+                isMulti
+                onChange={(value) => updateFormDetails('room_ids', value)}
+              />
+            </div>
+          </>
+        }
         <div className="form_group">
           <label>
             Check In:
