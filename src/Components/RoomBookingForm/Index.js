@@ -43,7 +43,10 @@ const RoomBookingForm = () => {
       .then((data) => {
         console.log(data)
         const fields = ['booked_from', 'booked_upto'];
-        fields.forEach(field => updateFormDetails(field, data[field]));
+        fields.forEach((field) => {
+          formDetails[field] = data[field]
+          setFormDetails(formDetails)
+        })
         setBooking(data);
       })
       .catch((err) => {
